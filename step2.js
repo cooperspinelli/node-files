@@ -4,26 +4,28 @@ const fsP = require("fs/promises");
 
 /** Takes in file path and logs content of the file in the console*/
 async function cat(path) {
+  let contents;
   try {
-    let contents = await fsP.readFile(path, "utf8");
-    console.log("file contents", contents);
+    contents = await fsP.readFile(path, "utf8");
   } catch (err) {
     console.log(err);
     process.exit(1);
   }
+  console.log("file contents", contents);
 }
 
 /** Takes in a url, makes a fetch request to the url, and logs the text content
  * of the response to the console */
 async function webCat(url) {
+  let response;
   try {
-    const response = await fetch(url);
-    const responseText = await response.text();
-    console.log(responseText);
+    response = await fetch(url);
   } catch (err) {
     console.log(err);
     process.exit(1);
   }
+  const responseText = await response.text();
+  console.log(responseText);
 }
 
 // Takes in user input and calls webCat or cat depending on whether input is a

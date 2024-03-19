@@ -4,14 +4,14 @@ const fsP = require("fs/promises")
 
 /** Takes in file path and logs content of the file in the console*/
 async function cat(path) {
+  let contents;
   try {
-    // TODO: minimize stuff in try catch
-    let contents = await fsP.readFile(path, "utf8");
-    console.log("file contents", contents);
+    contents = await fsP.readFile(path, "utf8");
   } catch (err) {
     console.log(err);
     process.exit(1);
   }
+  console.log("file contents", contents);
 }
 
 const argv = process.argv;
